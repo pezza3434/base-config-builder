@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 const percent = require('percent');
-const dotRemover = require('./lib/common/dotRemover');
+const dotRemover = require('./utils/dotRemover');
 const glob = require('glob');
 
 const locale = 'en-gb';
@@ -43,7 +43,7 @@ function compareConfigs(arr) {
 }
 
 // options is optional
-glob(path.join(__dirname, './pageconfig/**/', locale, '/*.json'), function (er, files) {
+glob(path.join(process.cwd(), 'app/pageconfig/**/', locale, '/*.json'), function (er, files) {
 
     const componentMap = {};
 
@@ -102,20 +102,20 @@ glob(path.join(__dirname, './pageconfig/**/', locale, '/*.json'), function (er, 
     }
 
     //Start - Add Page configs to components
-    const componentNames = fs.readdirSync(path.join(__dirname, './components')).filter(dotRemover);
+    const componentNames = fs.readdirSync(path.join(process.cwd(), 'app/components')).filter(dotRemover);
     componentNames.forEach(function (componentName) {
         if (!baseConfigs[componentName]) {
             return;
         }
 
         try {
-            fs.mkdirSync(path.join(__dirname, './components', componentName, 'config'));
-            fs.mkdirSync(path.join(__dirname, './components', componentName, 'config', locale));
+            fs.mkdirSync(path.join(process.cwd(), 'app/components', componentName, 'config'));
+            fs.mkdirSync(path.join(process.cwd(), 'app/components', componentName, 'config', locale));
         } catch (e) {
 
         }
 
-        fs.writeFileSync(path.join(__dirname, './components', componentName, 'config', locale, 'index.json'), JSON.stringify(baseConfigs[componentName], null, 4), 'utf8');
+        fs.writeFileSync(path.join(process.cwd(), 'app/components', componentName, 'config', locale, 'index.json'), JSON.stringify(baseConfigs[componentName], null, 4), 'utf8');
 
     });
     //End - Add page configs to components
