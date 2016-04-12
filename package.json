@@ -9,5 +9,10 @@
   "license": "ISC",
   "bin": {
     "base-config-builder": "index.js"
+  },
+  "dependencies": {
+    "glob": "^7.0.3",
+    "lodash": "^4.10.0",
+    "percent": "^1.1.1"
   }
 }
