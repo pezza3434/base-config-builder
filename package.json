@@ -1,6 +1,6 @@
 {
   "name": "base-config-builder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Builds base page configs for the Laterooms SWP",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
